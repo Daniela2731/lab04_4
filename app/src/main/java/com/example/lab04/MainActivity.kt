@@ -40,7 +40,8 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
     var text by remember { mutableStateOf("") }
 
     Column(modifier = modifier.padding(16.dp)) {
-        Text(text = "Hello $name!")
+        // 👉 Aquí hicimos el cambio distinto (rama conflicto-rama)
+        Text(text = "Hola desde conflicto-rama")
 
         // 👉 Button con estilo (primer componente)
         Button(
