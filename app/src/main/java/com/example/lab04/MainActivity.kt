@@ -10,10 +10,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.material3.TextField
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp   // ✅ Import necesario
+import androidx.compose.ui.unit.dp
 import com.example.lab04.ui.theme.Lab04Theme
 
 class MainActivity : ComponentActivity() {
@@ -35,13 +36,21 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
+    var text by remember { mutableStateOf("") } // 👉 estado para TextField
+
     Column(modifier = modifier.padding(16.dp)) {
         Text(text = "Hello $name!")
 
-        // 👉 Nuevo componente: Button
         Button(onClick = { }) {
             Text("Click me")
         }
+
+        // 👉 Nuevo componente: TextField
+        TextField(
+            value = text,
+            onValueChange = { text = it },
+            label = { Text("Escribe aquí") }
+        )
     }
 }
 
