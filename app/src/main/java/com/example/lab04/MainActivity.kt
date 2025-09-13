@@ -5,18 +5,16 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.compose.ui.graphics.Color
 import com.example.lab04.ui.theme.Lab04Theme
 import com.example.lab04.R
 
@@ -39,25 +37,47 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
-    var text by remember { mutableStateOf("") } // estado para TextField
+    var text by remember { mutableStateOf("") }
 
     Column(modifier = modifier.padding(16.dp)) {
         Text(text = "Hello $name!")
 
-        Button(onClick = { }) {
-            Text("Click me")
+        // 👉 Button con estilo (primer componente)
+        Button(
+            onClick = { /* TODO */ },
+            modifier = Modifier
+                .padding(top = 8.dp)
+                .fillMaxWidth(),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color(0xFF6200EE),
+                contentColor = Color.White
+            )
+        ) {
+            Text(
+                "Click Me!",
+                fontSize = 18.sp,
+                fontWeight = FontWeight.Bold
+            )
         }
 
+        Spacer(modifier = Modifier.height(16.dp))
+
+        // 👉 TextField (segundo componente)
         TextField(
             value = text,
             onValueChange = { text = it },
             label = { Text("Escribe aquí") }
         )
 
-        // 👉 Nuevo componente: Image
+        Spacer(modifier = Modifier.height(16.dp))
+
+        // 👉 Image (tercer componente modificado con estilo)
         Image(
             painter = painterResource(id = R.drawable.ic_launcher_foreground),
-            contentDescription = "Logo Android"
+            contentDescription = "Logo Android",
+            modifier = Modifier
+                .size(120.dp) // tamaño fijo
+                .padding(top = 16.dp)
         )
     }
 }
